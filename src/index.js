@@ -28,6 +28,9 @@ function Square(props) {
 
     handleClick(i) {
       const squares = this.state.squares.slice(); // Copy, dont mutate the existing state
+      if (calculateWinner(squares) || squares[i]) {
+        return; // If there is a winner, or the square is already filled, return
+      }
       squares[i] = this.state.xIsNext ? 'X' : 'O';
       this.setState({
         squares: squares,
